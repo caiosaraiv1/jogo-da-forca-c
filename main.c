@@ -103,7 +103,7 @@ int main() {
         {
             int select = rand() % 3;
             char *selected_word = easy_word[select]; 
-            int max_attempts = 8;
+            int max_attempts = 10;
             printf("Voce tera %d tentativas!\n", max_attempts);
             game(selected_word, length_easy, max_attempts);
         }
