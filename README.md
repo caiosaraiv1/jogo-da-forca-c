@@ -5,7 +5,7 @@ Este projeto é uma implementação do clássico jogo da forca, desenvolvida na 
 ## Funcionalidades
 
 - Três níveis de dificuldade:
-  - **Fácil**: palavras com 5 letras e 8 tentativas disponíveis.
+  - **Fácil**: palavras com 5 letras e 10 tentativas disponíveis.
   - **Médio**: palavras com 8 letras e 12 tentativas disponíveis.
   - **Difícil**: palavras com 12 letras e 15 tentativas disponíveis.
 - Seleção aleatória de palavras para cada dificuldade.
