@@ -103,7 +103,7 @@ int main() {
 
     srand(time(NULL));
 
-    apresentarJogo();
+    intruceGame();
 
     printf("Selecione a dificuldade digitando um numero de 1-3: ");
     scanf("%d", &difficult_selected);
