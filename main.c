@@ -4,7 +4,7 @@
 #include <stdlib.h>
 #include <string.h>
 
-void intruceGame() {
+void intruce_game() {
     printf("======================================\n");
     printf("       BEM-VINDO AO JOGO DA FORCA     \n");
     printf("======================================\n");
@@ -103,7 +103,7 @@ int main() {
 
     srand(time(NULL));
 
-    intruceGame();
+    intruce_game();
 
     printf("Selecione a dificuldade digitando um numero de 1-3: ");
     scanf("%d", &difficult_selected);
