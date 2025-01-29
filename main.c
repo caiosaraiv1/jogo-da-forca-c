@@ -2,6 +2,23 @@
 #include <stdbool.h>
 #include <time.h>
 #include <stdlib.h>
+#include <string.h>
+
+void apresentarJogo() {
+    printf("======================================\n");
+    printf("       BEM-VINDO AO JOGO DA FORCA     \n");
+    printf("======================================\n");
+    printf("Regras do jogo:\n");
+    printf("- Voce deve adivinhar a palavra secreta, letra por letra.\n");
+    printf("- Se errar muitas vezes, voce perde!\n\n");
+
+    printf("Escolha um nivel de dificuldade:\n");
+    printf("1 - Facil   (Palavras curtas, mais tentativas)\n");
+    printf("2 - Medio   (Palavras moderadas, tentativas equilibradas)\n");
+    printf("3 - Dificil (Palavras longas, menos tentativas)\n\n");
+
+    printf("Digite o numero correspondente a dificuldade desejada e divirta-se!\n");
+}
 
 bool verify_end_game(int attempts, int max_attempts, char word[], int length) {
     
@@ -79,51 +96,93 @@ int main() {
 
     int difficult_selected;
 
-    char easy_word_one[] = "livro";
-    char easy_word_two[] = "solto";
-    char easy_word_three[] = "papel";
-    char medium_word_one[] = "elefante";
-    char medium_word_two[] = "caminhar";
-    char medium_word_three[] = "computar";
-    char hard_word_one[] = "conhecimento";
-    char hard_word_two[] = "pluviosidade";
-    char hard_word_three[] = "incontinente";
-
-    char *easy_word[] = {easy_word_one, easy_word_two, easy_word_three};
-    char *medium_word[] = {medium_word_one, medium_word_two, medium_word_three};
-    char *hard_word[] = {hard_word_one, hard_word_two, hard_word_three};
+    FILE *archive;
+    char line[12];
+    int counter = 0;
+    int select_line = (rand() % 100) + 1;;
 
     srand(time(NULL));
 
-    printf("Digite um valor de 1-3: ");
+    apresentarJogo();
+
+    printf("Selecione a dificuldade digitando um numero de 1-3: ");
     scanf("%d", &difficult_selected);
 
     switch (difficult_selected) {
     case 1:
         {
-            int select = rand() % 3;
-            char *selected_word = easy_word[select]; 
-            int max_attempts = 10;
+            archive = fopen("easy_words.txt", "r");
+            if(archive == NULL) {
+                printf("Erro ao abrir o arquivo");
+                return 1;
+            }
+
+            char word[5];
+
+            while(fgets(line, 15, archive) != NULL) {
+                counter++;
+                if(counter == select_line) {
+                    if(sscanf(line, "%s", word) != 1) {
+                        printf("Nenhuma palavra na linha");
+                    }
+                    break;
+                }
+            }
+ 
+            int max_attempts = 18;
             printf("Voce tera %d tentativas!\n", max_attempts);
-            game(selected_word, length_easy, max_attempts);
+            game(word, length_easy, max_attempts);
         }
         break;
     case 2:
         {
-            int select = rand() % 3;
-            char *selected_word = medium_word[select];
-            int max_attempts = 12;
+            archive = fopen("medium_words.txt", "r");
+            if(archive == NULL) {
+                printf("Erro ao abrir o arquivo");
+                return 1;
+            }
+
+            char word[8];
+
+            while(fgets(line, 15, archive) != NULL) {
+                counter++;
+                if(counter == select_line) {
+                    if(sscanf(line, "%s", word) != 1) {
+                        printf("Nenhuma palavra na linha");
+                    }
+                    break;
+                }
+            }
+
+            int max_attempts = 22;
             printf("Voce tera %d tentativas!\n", max_attempts);
-            game(selected_word, length_medium, max_attempts);
+            game(word, length_medium, max_attempts);
         }
         break;
     case 3:
         {
-            int select = rand() % 3;
-            char *selected_word = hard_word[select];
-            int max_attempts = 15;
+            archive = fopen("hard_words.txt", "r");
+
+            if(archive == NULL) {
+                printf("Erro ao abrir o arquivo");
+                return 1;
+            }
+
+            char word[12];
+
+            while(fgets(line, 15, archive) != NULL) {
+                counter++;
+                if(counter == select_line) {
+                    if(sscanf(line, "%s", word) != 1) {
+                        printf("Nenhuma palavra na linha");
+                    }
+                    break;
+                }
+            }
+
+            int max_attempts = 28;
             printf("Voce tera %d tentativas!\n", max_attempts);
-            game(selected_word, length_hard, max_attempts);
+            game(word, length_hard, max_attempts);
         }
         break;
     default:
