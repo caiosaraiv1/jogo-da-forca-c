@@ -4,7 +4,7 @@
 #include <stdlib.h>
 #include <string.h>
 
-void apresentarJogo() {
+void intruceGame() {
     printf("======================================\n");
     printf("       BEM-VINDO AO JOGO DA FORCA     \n");
     printf("======================================\n");
